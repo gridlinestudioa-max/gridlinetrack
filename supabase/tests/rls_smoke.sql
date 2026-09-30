@@ -74,3 +74,8 @@ select save_event_card(:'a_track', :'a_event', '{"slug":"opener","title":"Season
 select pg_temp.as_user(null);
 select count(*) as anon_sees_a_sched_events from events where track_id = :'a_track';
 select count(*) as a_classes_after_replace from event_classes where event_id = :'a_event';
+
+\echo '--- 5. event card links (registration/results) round-trip through save_event_card'
+select pg_temp.as_user('aaaaaaaa-0000-4000-8000-000000000001');
+select save_event_card(:'a_track', :'a_event', '{"slug":"opener","title":"Season Opener","event_date":"2027-04-10","status":"scheduled","registration_url":"https://example.com/register","results_url":"https://example.com/results"}', '[]', '[]');
+select registration_url, results_url from events where id = :'a_event';

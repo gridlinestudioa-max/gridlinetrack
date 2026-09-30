@@ -9,8 +9,9 @@ import { updateSettings } from "../actions";
 
 const LINKS = [
   ["tickets_url", "Tickets", "Your ticketing provider’s page for the track."],
+  ["registration_url", "Driver registration", "Where drivers pre-register. Used when an event has no link of its own."],
   ["livestream_url", "Livestream", "Where fans watch online."],
-  ["results_url", "Results", "Where you post results and points."],
+  ["results_url", "Results", "Where you post results and points. Used when an event has no link of its own."],
   ["facebook_url", "Facebook", ""],
   ["instagram_url", "Instagram", ""],
   ["tiktok_url", "TikTok", ""],

@@ -18,6 +18,14 @@ const DEFAULT_ADMISSION: AdmissionLine[] = [
   { label: "Pit pass", price: "" },
 ];
 
+// Outbound links on the card. Each falls back to the track's default when blank.
+const LINK_FIELDS = [
+  ["tickets_url", "Tickets link"],
+  ["registration_url", "Driver registration link"],
+  ["results_url", "Results link"],
+  ["livestream_url", "Livestream link"],
+] as const;
+
 let nextKey = 0;
 const key = () => ++nextKey;
 
@@ -287,7 +295,7 @@ export function EventCardForm({
         </button>
       </Section>
 
-      <Section title="Details & links" hint="Links go out to your ticketing or streaming provider.">
+      <Section title="Details & links" hint="Links go out to your ticketing, registration, results or streaming provider.">
         <Field label="Description" htmlFor="description" hint="Blank lines start a new paragraph.">
           <textarea
             id="description"
@@ -297,28 +305,19 @@ export function EventCardForm({
             className={`${inputClass} py-2`}
           />
         </Field>
-        <Field label="Tickets link" htmlFor="tickets_url" error={err.tickets_url} hint="Leave blank to use the track’s default.">
-          <input
-            id="tickets_url"
-            name="tickets_url"
-            type="url"
-            inputMode="url"
-            defaultValue={event?.tickets_url ?? ""}
-            placeholder="https://"
-            className={inputClass}
-          />
-        </Field>
-        <Field label="Livestream link" htmlFor="livestream_url" error={err.livestream_url} hint="Leave blank to use the track’s default.">
-          <input
-            id="livestream_url"
-            name="livestream_url"
-            type="url"
-            inputMode="url"
-            defaultValue={event?.livestream_url ?? ""}
-            placeholder="https://"
-            className={inputClass}
-          />
-        </Field>
+        {LINK_FIELDS.map(([name, label]) => (
+          <Field key={name} label={label} htmlFor={name} error={err[name]} hint="Leave blank to use the track’s default.">
+            <input
+              id={name}
+              name={name}
+              type="url"
+              inputMode="url"
+              defaultValue={event?.[name] ?? ""}
+              placeholder="https://"
+              className={inputClass}
+            />
+          </Field>
+        ))}
         <Field label="Page address" htmlFor="slug" error={err.slug} hint={`…/events/${shownSlug || "event-name"}`}>
           <input
             id="slug"

@@ -143,6 +143,7 @@ export async function updateSettings(trackId: string, _prev: ActionState, fd: Fo
     phone: text(fd, "phone") || null,
     email: email || null,
     tickets_url: optionalUrl(fd, "tickets_url", fieldErrors),
+    registration_url: optionalUrl(fd, "registration_url", fieldErrors),
     livestream_url: optionalUrl(fd, "livestream_url", fieldErrors),
     results_url: optionalUrl(fd, "results_url", fieldErrors),
     facebook_url: optionalUrl(fd, "facebook_url", fieldErrors),
@@ -267,6 +268,8 @@ export async function saveEvent(
 
   const tickets = optionalUrl(fd, "tickets_url", fieldErrors);
   const livestream = optionalUrl(fd, "livestream_url", fieldErrors);
+  const registration = optionalUrl(fd, "registration_url", fieldErrors);
+  const results = optionalUrl(fd, "results_url", fieldErrors);
 
   // Classes on the card, in the order the form lists them.
   const feature = text(fd, "feature");
@@ -310,6 +313,8 @@ export async function saveEvent(
       admission,
       tickets_url: tickets ?? "",
       livestream_url: livestream ?? "",
+      registration_url: registration ?? "",
+      results_url: results ?? "",
     },
     p_classes: classes,
     p_specials: specials,

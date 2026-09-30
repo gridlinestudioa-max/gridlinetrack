@@ -10,8 +10,12 @@ const BANNERS: Partial<Record<EventCard["status"], string>> = {
 };
 
 export function EventView({ site, event, base }: { site: SiteData; event: EventCard; base: string }) {
-  const tickets = safeHref(event.tickets_url ?? site.track.tickets_url);
+  const finished = event.status === "completed" || event.status === "cancelled";
+  const tickets = finished ? null : safeHref(event.tickets_url ?? site.track.tickets_url);
   const stream = safeHref(event.livestream_url ?? site.track.livestream_url);
+  const registration = finished ? null : safeHref(event.registration_url ?? site.track.registration_url);
+  // Track-wide results page only once this event is final; an event's own link always shows.
+  const results = safeHref(event.results_url ?? (event.status === "completed" ? site.track.results_url : null));
   const banner = BANNERS[event.status];
   const mapsQuery = site.track.address ?? [site.track.name, site.track.city, site.track.region].filter(Boolean).join(", ");
 
@@ -54,9 +58,15 @@ export function EventView({ site, event, base }: { site: SiteData; event: EventC
         />
       </div>
 
-      {tickets || stream ? (
+      {tickets || stream || registration || results ? (
         <div className="mt-4 flex flex-wrap gap-3">
+          {results ? <ExternalButton href={results}>Results</ExternalButton> : null}
           {tickets ? <ExternalButton href={tickets}>Buy tickets</ExternalButton> : null}
+          {registration ? (
+            <ExternalButton href={registration} variant="outline">
+              Driver registration
+            </ExternalButton>
+          ) : null}
           {stream ? (
             <ExternalButton href={stream} variant="outline">
               Watch live

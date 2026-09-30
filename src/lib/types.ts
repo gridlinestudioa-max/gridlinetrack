@@ -17,6 +17,7 @@ export interface Track {
   phone: string | null;
   email: string | null;
   tickets_url: string | null;
+  registration_url: string | null;
   livestream_url: string | null;
   results_url: string | null;
   facebook_url: string | null;
@@ -77,6 +78,8 @@ export interface RaceEvent {
   admission: AdmissionLine[];
   tickets_url: string | null;
   livestream_url: string | null;
+  registration_url: string | null;
+  results_url: string | null;
 }
 
 export interface EventClassRow {

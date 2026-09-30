@@ -2,6 +2,22 @@
 
 Newest first. Start each session with a one-line goal; end with done / broke / next.
 
+## 2026-09-30 (later)
+
+**Goal:** Add registration and results links to the event card (SPEC section 6, events).
+
+**Done**
+- Migration `20260930000400_event_links.sql`: `events.registration_url`, `events.results_url`,
+  `tracks.registration_url` (track-wide default); `save_event_card()` saves both links.
+- Event card form: tickets, driver registration, results and livestream links (blank = track default).
+- Track settings: default driver-registration link.
+- Event page: Results (event link, or track results page once the event is Final), Buy tickets and
+  Driver registration hidden once the event is Final/Cancelled.
+- RLS smoke test now also checks the links round-trip; `setup_all.sql` regenerated.
+
+**Next**
+- Owner runs the new migration in the Supabase SQL Editor (live DB), then tests on the live site.
+
 ## 2026-09-30
 
 **Goal:** Phase 1 foundation, deployed without any local installs.
