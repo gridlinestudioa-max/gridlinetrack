@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { brandVars } from "@/lib/brand";
-import { fontVars } from "@/lib/fonts";
 import type { SiteData } from "@/lib/types";
 import { safeHref } from "./bits";
 
@@ -15,7 +13,7 @@ export function SiteShell({
   preview?: { adminHref: string };
   children: React.ReactNode;
 }) {
-  const { track, brand, logoUrl } = site;
+  const { track, logoUrl } = site;
   const tickets = safeHref(track.tickets_url);
   const socials = [
     ["Facebook", track.facebook_url],
@@ -28,10 +26,7 @@ export function SiteShell({
   const location = [track.city, track.region].filter(Boolean).join(", ");
 
   return (
-    <div
-      style={{ ...brandVars(brand), ...fontVars(brand.font_pair) }}
-      className="flex min-h-dvh flex-col bg-paper font-sans text-ink"
-    >
+    <div className="flex min-h-dvh flex-col bg-paper text-ink">
       {preview ? (
         <div className="bg-accent px-4 py-2 text-center text-sm text-on-accent">
           Preview — drafts are visible here only.{" "}
@@ -40,7 +35,6 @@ export function SiteShell({
           </Link>
         </div>
       ) : null}
-      <div className="stripe h-2" aria-hidden />
       <header className="border-b-4 border-ink">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-3">
           <Link href={base || "/"} className="flex min-w-0 items-center gap-3">
@@ -71,7 +65,6 @@ export function SiteShell({
       <main className="flex-1">{children}</main>
 
       <footer className="mt-16 border-t-4 border-ink">
-        <div className="checker h-3" aria-hidden />
         <div className="mx-auto grid max-w-6xl gap-6 px-4 py-8 sm:grid-cols-3">
           <div>
             <p className="display text-2xl">{track.name}</p>

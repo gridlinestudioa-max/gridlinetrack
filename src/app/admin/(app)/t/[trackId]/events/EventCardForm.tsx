@@ -192,7 +192,7 @@ export function EventCardForm({
                           value={c.id}
                           checked={feature === c.id}
                           onChange={() => setFeature(c.id)}
-                          className="size-5 accent-[#e10600]"
+                          className="size-5 accent-black"
                         />
                         Feature
                       </label>
@@ -207,7 +207,7 @@ export function EventCardForm({
 
       <Section title="Specials" hint="Promos for the night: fireworks, kids ride free, $2 hot dogs…">
         {specials.map((s, i) => (
-          <div key={s.key} className="grid gap-2 border-l-4 border-[#ffd400] pl-3">
+          <div key={s.key} className="grid gap-2 border-l-4 border-black pl-3">
             <div className="flex gap-2">
               <input
                 name="special_title"
@@ -221,7 +221,7 @@ export function EventCardForm({
               <button
                 type="button"
                 onClick={() => setSpecials(specials.filter((x) => x.key !== s.key))}
-                className="min-h-12 shrink-0 border-2 border-neutral-300 px-3 text-sm font-semibold hover:border-red-700 hover:text-red-700"
+                className="min-h-12 shrink-0 border-2 border-neutral-300 px-3 text-sm font-semibold hover:border-black hover:text-black"
                 aria-label={`Remove special ${i + 1}`}
               >
                 Remove
@@ -271,7 +271,7 @@ export function EventCardForm({
             <button
               type="button"
               onClick={() => setAdmission(admission.filter((x) => x.key !== a.key))}
-              className="min-h-12 border-2 border-neutral-300 px-3 text-sm font-semibold hover:border-red-700 hover:text-red-700"
+              className="min-h-12 border-2 border-neutral-300 px-3 text-sm font-semibold hover:border-black hover:text-black"
               aria-label={`Remove admission line ${i + 1}`}
             >
               ✕

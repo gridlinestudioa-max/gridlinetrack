@@ -23,7 +23,7 @@ export default async function TrackAdminLayout({ children, params }: LayoutProps
                   href={tenantSiteUrl(track.slug)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-green-700 px-3 py-2 text-white hover:bg-green-800"
+                  className="bg-black px-3 py-2 text-white hover:bg-neutral-800"
                 >
                   Live site ↗
                 </a>
@@ -34,7 +34,7 @@ export default async function TrackAdminLayout({ children, params }: LayoutProps
         </div>
       </div>
       {!track.published ? (
-        <div className="border-b-2 border-neutral-950 bg-[#ffd400]">
+        <div className="border-b-2 border-neutral-950 bg-white">
           <p className="mx-auto max-w-5xl px-4 py-2 text-sm">
             <strong>Your site isn&rsquo;t live yet.</strong> Use Preview to check it, then publish it in{" "}
             <Link href={`${base}/settings`} className="font-semibold underline">

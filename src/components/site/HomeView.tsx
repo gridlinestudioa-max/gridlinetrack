@@ -34,7 +34,7 @@ export function HomeView({
     <>
       {next ? (
         <div className="bg-accent text-on-accent">
-          <p className="display mx-auto max-w-6xl px-4 py-2 text-base leading-snug tracking-[0.12em] sm:text-lg">
+          <p className="display mx-auto max-w-6xl px-4 py-2 text-base leading-snug sm:text-lg">
             Next race <span aria-hidden>▸</span> {dateParts(next.event_date).dow} {dateParts(next.event_date).month}.
             {dateParts(next.event_date).day}
             {next.gates_open ? (
@@ -57,7 +57,7 @@ export function HomeView({
         {next ? (
           <div className="grid grid-cols-1 gap-4">
             <div className="flex items-center justify-between gap-3">
-              <p className="display text-lg tracking-[0.25em] text-brand-text">
+              <p className="display text-lg text-brand-text">
                 {countdownLabel(daysBetween(today, next.event_date))}
               </p>
               {next.status !== "scheduled" ? <StatusFlag status={next.status} /> : null}
@@ -65,7 +65,7 @@ export function HomeView({
             <div className="flex gap-4 sm:gap-6">
               <DateBlock date={next.event_date} />
               <div className="min-w-0 flex-1 self-center">
-                <h1 className="display text-4xl break-words hyphens-auto min-[420px]:text-5xl sm:text-7xl lg:text-8xl">
+                <h1 className="display text-3xl break-words hyphens-auto sm:text-5xl lg:text-6xl">
                   <Link href={`${base}/events/${next.slug}`} className="hover:text-brand-text">
                     {next.title}
                   </Link>

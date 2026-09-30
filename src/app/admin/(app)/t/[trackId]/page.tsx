@@ -25,7 +25,7 @@ export default async function TrackEventsPage({ params }: PageProps<"/admin/t/[t
     <div className="grid gap-8">
       <div className="flex items-center justify-between gap-3">
         <h2 className="display text-3xl">Events</h2>
-        <Link href={`${base}/events/new`} className="display bg-[#e10600] px-4 py-3 text-lg text-white hover:bg-[#c10500]">
+        <Link href={`${base}/events/new`} className="display bg-black px-4 py-3 text-lg text-white hover:bg-neutral-800">
           + New event card
         </Link>
       </div>
@@ -66,7 +66,7 @@ export default async function TrackEventsPage({ params }: PageProps<"/admin/t/[t
                             .join(" · ") || "No times yet"}
                         </span>
                       </span>
-                      <span className="shrink-0 [--ink:#0a0a0a] [--paper:#fff]">
+                      <span className="shrink-0">
                         <StatusFlag status={e.status} />
                       </span>
                     </Link>

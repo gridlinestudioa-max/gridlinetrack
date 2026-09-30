@@ -17,12 +17,12 @@ export function EventView({ site, event, base }: { site: SiteData; event: EventC
 
   return (
     <article className="mx-auto max-w-6xl px-4 pt-6 sm:pt-10">
-      <Link href={`${base}/schedule`} className="display text-base tracking-[0.2em] opacity-70 hover:opacity-100">
+      <Link href={`${base}/schedule`} className="display text-base opacity-70 hover:opacity-100">
         ← Schedule
       </Link>
 
       {banner ? (
-        <div className="stripe mt-4 border-4 border-ink p-1">
+        <div className="mt-4 border-4 border-ink p-1">
           <p className="display bg-paper px-4 py-3 text-3xl sm:text-4xl">
             {banner}
             {event.rain_date ? <span className="text-brand-text"> — new date {longDate(event.rain_date)}</span> : null}
@@ -33,8 +33,8 @@ export function EventView({ site, event, base }: { site: SiteData; event: EventC
       <header className="mt-4 flex gap-4 sm:gap-6">
         <DateBlock date={event.event_date} />
         <div className="min-w-0 flex-1 self-center">
-          <p className="display text-base tracking-[0.2em] text-brand-text sm:text-lg">{longDate(event.event_date)}</p>
-          <h1 className="display mt-1 text-4xl break-words hyphens-auto min-[420px]:text-5xl sm:text-7xl lg:text-8xl">{event.title}</h1>
+          <p className="display text-base text-brand-text sm:text-lg">{longDate(event.event_date)}</p>
+          <h1 className="display mt-1 text-3xl break-words hyphens-auto sm:text-5xl lg:text-6xl">{event.title}</h1>
           {event.subtitle ? <p className="mt-2 text-lg opacity-80 sm:text-xl">{event.subtitle}</p> : null}
           {event.status !== "scheduled" && !banner ? (
             <div className="mt-3">
@@ -84,7 +84,7 @@ export function EventView({ site, event, base }: { site: SiteData; event: EventC
                     <span className="min-w-0">
                       <span className="display block text-3xl break-words sm:text-4xl">{c.classes?.name}</span>
                       {c.is_feature ? (
-                        <span className="display text-sm tracking-[0.2em]">Feature event</span>
+                        <span className="display text-sm">Feature event</span>
                       ) : null}
                     </span>
                     {c.purse ? <span className="display text-right text-xl sm:text-2xl">{c.purse}</span> : null}
@@ -123,7 +123,7 @@ export function EventView({ site, event, base }: { site: SiteData; event: EventC
         <aside className="grid content-start gap-8">
           {event.admission.length ? (
             <section className="border-4 border-ink">
-              <h2 className="display bg-ink px-4 py-2 text-2xl tracking-[0.1em] text-paper">Admission</h2>
+              <h2 className="display bg-ink px-4 py-2 text-2xl text-paper">Admission</h2>
               <dl>
                 {event.admission.map((a, i) => (
                   <div key={i} className="flex items-baseline gap-2 border-t-2 border-ink px-4 py-3 first:border-t-0">
@@ -137,7 +137,7 @@ export function EventView({ site, event, base }: { site: SiteData; event: EventC
           ) : null}
 
           <section>
-            <h2 className="display text-2xl tracking-[0.1em]">Location</h2>
+            <h2 className="display text-2xl">Location</h2>
             <p className="mt-2">{mapsQuery}</p>
             {mapsQuery ? (
               <a

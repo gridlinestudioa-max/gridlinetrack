@@ -46,7 +46,7 @@ export default async function AdminHome() {
               </Link>
               <span
                 className={`display shrink-0 px-2 py-1 text-xs tracking-widest ${
-                  t.published ? "bg-green-700 text-white" : "border-2 border-dashed border-neutral-400 text-neutral-500"
+                  t.published ? "bg-black text-white" : "border-2 border-dashed border-neutral-400 text-neutral-500"
                 }`}
               >
                 {t.published ? "Live" : "Not live"}

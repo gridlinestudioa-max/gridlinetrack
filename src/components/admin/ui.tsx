@@ -25,7 +25,7 @@ export function Field({
       </label>
       {children}
       {error ? (
-        <p className="text-sm font-medium text-red-700" id={`${htmlFor}-error`}>
+        <p className="text-sm font-medium text-black" id={`${htmlFor}-error`}>
           {error}
         </p>
       ) : hint ? (
@@ -50,7 +50,7 @@ export function SubmitButton({
   const styles = {
     primary: "bg-neutral-950 text-white hover:bg-neutral-800",
     secondary: "border-2 border-neutral-950 text-neutral-950 hover:bg-neutral-100",
-    danger: "border-2 border-red-700 text-red-700 hover:bg-red-50",
+    danger: "border-2 border-black text-black hover:bg-neutral-100",
   }[variant];
   return (
     <button
@@ -66,14 +66,14 @@ export function SubmitButton({
 export function FormMessage({ state }: { state: { ok?: boolean; message?: string; error?: string } }) {
   if (state.error) {
     return (
-      <p role="alert" className="border-l-4 border-red-700 bg-red-50 px-3 py-2 text-sm text-red-800">
+      <p role="alert" className="border-l-4 border-black bg-neutral-100 px-3 py-2 text-sm text-black">
         {state.error}
       </p>
     );
   }
   if (state.ok && state.message) {
     return (
-      <p role="status" className="border-l-4 border-green-700 bg-green-50 px-3 py-2 text-sm text-green-800">
+      <p role="status" className="border-l-4 border-black bg-neutral-100 px-3 py-2 text-sm text-black">
         {state.message}
       </p>
     );

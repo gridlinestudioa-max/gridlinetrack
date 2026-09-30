@@ -14,7 +14,7 @@ export function ScheduleView({ site, base, today }: { site: SiteData; base: stri
 
   return (
     <div className="mx-auto max-w-6xl px-4 pt-8 sm:pt-12">
-      <h1 className="display text-6xl sm:text-8xl">
+      <h1 className="display text-4xl sm:text-6xl">
         {years.length === 1 ? `${years[0]} ` : ""}
         <span className="text-brand-text">Schedule</span>
       </h1>
@@ -25,7 +25,7 @@ export function ScheduleView({ site, base, today }: { site: SiteData; base: stri
 
       {[...months.entries()].map(([key, events]) => (
         <section key={key} className="mt-10">
-          <h2 className="display border-b-4 border-ink pb-1 text-3xl tracking-[0.1em] sm:text-4xl">
+          <h2 className="display border-b-4 border-ink pb-1 text-3xl sm:text-4xl">
             {dateParts(`${key}-01`).monLong} {key.slice(0, 4)}
           </h2>
           <ol>
@@ -46,7 +46,7 @@ export function ScheduleView({ site, base, today }: { site: SiteData; base: stri
                     <div className="min-w-0 flex-1 self-center">
                       <p className="display text-2xl break-words sm:text-4xl">{e.title}</p>
                       {times.length ? (
-                        <p className="display mt-1 text-base tracking-wide opacity-80">{times.join("  ·  ")}</p>
+                        <p className="display mt-1 text-base opacity-80">{times.join("  ·  ")}</p>
                       ) : null}
                       {classLine(e) ? <p className="mt-1 text-sm opacity-70">{classLine(e)}</p> : null}
                     </div>

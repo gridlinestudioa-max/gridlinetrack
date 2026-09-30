@@ -29,7 +29,7 @@ export function SettingsForm({ track, siteUrl }: { track: Track; siteUrl: string
       <fieldset className="grid gap-3 border-2 border-neutral-950 bg-white p-4 sm:p-5">
         <legend className="display bg-neutral-950 px-2 text-lg tracking-wider text-white">Site status</legend>
         <label className="flex min-h-12 cursor-pointer items-center gap-3">
-          <input type="checkbox" name="published" defaultChecked={track.published} className="size-6 accent-green-700" />
+          <input type="checkbox" name="published" defaultChecked={track.published} className="size-6 accent-black" />
           <span>
             <span className="block font-semibold">Site is live</span>
             <span className="block text-sm text-neutral-500">

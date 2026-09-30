@@ -63,7 +63,7 @@ export default async function ClassesPage({ params }: PageProps<"/admin/t/[track
                 <form action={deleteClass.bind(null, track.id, c.id)} className="ml-auto">
                   <ConfirmButton
                     message={`Delete ${c.name}? It will be removed from every event card.`}
-                    className="min-h-10 px-3 text-red-700 underline underline-offset-4"
+                    className="min-h-10 px-3 text-black underline underline-offset-4"
                   >
                     Delete
                   </ConfirmButton>

@@ -36,7 +36,7 @@ export default async function EditEventPage({ params, searchParams }: PageProps<
         </Link>
       </div>
       {saved ? (
-        <p role="status" className="mb-4 border-l-4 border-green-700 bg-green-50 px-3 py-2 text-sm text-green-800">
+        <p role="status" className="mb-4 border-l-4 border-black bg-neutral-100 px-3 py-2 text-sm text-black">
           Event card created.{event.status === "draft" ? " It’s a draft — set a status to show it on your site." : ""}
         </p>
       ) : null}
@@ -44,7 +44,7 @@ export default async function EditEventPage({ params, searchParams }: PageProps<
       <form action={deleteEvent.bind(null, track.id, event.id)} className="mt-10 border-t-2 border-neutral-300 pt-6">
         <ConfirmButton
           message={`Delete “${event.title}”? This can’t be undone.`}
-          className="min-h-12 border-2 border-red-700 px-4 font-semibold text-red-700 hover:bg-red-50"
+          className="min-h-12 border-2 border-black px-4 font-semibold text-black hover:bg-neutral-100"
         >
           Delete this event
         </ConfirmButton>

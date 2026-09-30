@@ -9,13 +9,13 @@ export function SubscribeForm({ trackId, trackName }: { trackId: string; trackNa
   });
 
   return (
-    <div className="grid gap-4 bg-ink p-6 text-paper sm:grid-cols-[1fr_1.2fr] sm:items-center sm:p-8">
+    <div className="grid gap-4 border-4 border-ink p-6 sm:grid-cols-[1fr_1.2fr] sm:items-center sm:p-8">
       <div>
         <h2 className="display text-4xl sm:text-5xl">Race night alerts</h2>
         <p className="mt-2 opacity-80">Schedule changes, rain-outs and specials from {trackName}. No spam.</p>
       </div>
       {state.status === "ok" ? (
-        <p className="display text-2xl text-accent" role="status">
+        <p className="display text-2xl" role="status">
           You&rsquo;re on the list. See you at the track.
         </p>
       ) : (
@@ -31,19 +31,19 @@ export function SubscribeForm({ trackId, trackName }: { trackId: string; trackNa
               required
               autoComplete="email"
               placeholder="you@example.com"
-              className="min-h-12 flex-1 border-2 border-paper bg-paper px-3 text-lg text-ink"
+              className="min-h-12 flex-1 border-2 border-ink bg-paper px-3 text-lg text-ink"
             />
             {/* Honeypot: real people never see or fill this. */}
             <input name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
             <button
               disabled={pending}
-              className="display min-h-12 bg-brand px-6 text-xl text-on-brand hover:brightness-110 disabled:opacity-60"
+              className="display min-h-12 bg-ink px-6 text-xl text-paper hover:opacity-80 disabled:opacity-60"
             >
               {pending ? "Adding…" : "Sign me up"}
             </button>
           </div>
           {state.status === "error" ? (
-            <p className="text-sm text-accent" role="alert">
+            <p className="text-sm font-bold" role="alert">
               {state.message}
             </p>
           ) : null}

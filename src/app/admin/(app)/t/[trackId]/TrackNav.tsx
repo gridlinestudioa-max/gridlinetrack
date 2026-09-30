@@ -23,7 +23,7 @@ export function TrackNav({ base }: { base: string }) {
             href={target}
             aria-current={active ? "page" : undefined}
             className={`display shrink-0 border-b-4 px-4 py-3 text-lg ${
-              active ? "border-[#e10600] text-neutral-950" : "border-transparent text-neutral-500 hover:text-neutral-950"
+              active ? "border-black text-neutral-950" : "border-transparent text-neutral-500 hover:text-neutral-950"
             }`}
           >
             {label}

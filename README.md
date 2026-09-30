@@ -4,17 +4,30 @@ Multi-tenant websites for small racetracks, plus (in later phases) a race-night
 engine that turns one **event card** into an event page, flyer, social graphics
 and an email blast.
 
-This is **Phase 1**: tenancy, data model, admin, and the first public site
-template ("Pit Board").
+This is **Phase 1**: tenancy, data model, admin, and a plain black-and-white
+public site (home, schedule, event pages). Visual design comes later. Brand
+settings (colours, font pair, template) are already stored, but only the logo
+is shown for now.
 
 - **Stack:** Next.js 16 (App Router, TypeScript, Tailwind v4) + Supabase (Auth, Postgres, Storage).
 - **Runtime dependencies:** `next`, `react`, `react-dom`, `@supabase/ssr`, `@supabase/supabase-js`. That's all.
-- **No paid services** beyond Supabase. Fonts are self-hosted by `next/font` at build time. Images use plain `<img>`, so there's no metered image optimisation.
+- **Hosting:** Supabase (free tier) plus Vercel (Hobby tier). Nothing needs to be installed on your computer. Images use plain `<img>`, so there's no metered image optimisation.
 - **No third-party racing data.** Tickets, livestream, results and social links are plain outbound links.
 
 ---
 
-## Setup
+## Setup in the browser (nothing to install)
+
+1. **Supabase:** create a project at supabase.com. In **SQL Editor**, run each file in `supabase/migrations/` in filename order, then optionally `supabase/seed.sql` (once) for the demo track.
+2. **Supabase → Authentication → Sign In / Providers → Email:** turn off *Confirm email* while testing.
+3. **Supabase → Project Settings → API Keys:** copy the Project URL and the anon/publishable key.
+4. **Vercel:** import this GitHub repo as a project and set these environment variables:
+   - `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`, from step 3
+   - `NEXT_PUBLIC_ROOT_DOMAIN`, set to your project's domain, e.g. `gridlinetrack.vercel.app`
+   - `ALLOW_PATH_TENANTS=true`, because `*.vercel.app` has no wildcard subdomains
+5. Deploy. The admin is at `https://<project>.vercel.app/admin`. Track sites are at `https://<project>.vercel.app/sites/<slug>` until a custom domain with wildcard subdomains is added.
+
+## Local development (optional)
 
 ### 1. Install
 

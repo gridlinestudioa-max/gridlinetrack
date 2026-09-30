@@ -1,71 +1,43 @@
 @import "tailwindcss";
 
 /*
- * Runtime theme variables. Tenant sites override these per brand kit
- * (see brandVars() / fontVars()); the admin uses the defaults.
+ * Plain black-and-white theme for now. The brand kit (colours, font pair,
+ * template) is stored in the database but not applied yet; styling comes in
+ * a later pass. Components use these tokens so that pass is a one-file change.
  */
 :root {
   --paper: #ffffff;
-  --ink: #0a0a0a;
-  --brand: #e10600;
-  --on-brand: #ffffff;
-  --accent: #ffd400;
-  --on-accent: #0a0a0a;
-  --brand-text: #c10500;
-  --accent-text: #0a0a0a;
-  --site-display: "Oswald", "Arial Narrow", sans-serif;
-  --site-body: "Inter", system-ui, sans-serif;
+  --ink: #000000;
 }
 
 @theme inline {
   --color-paper: var(--paper);
   --color-ink: var(--ink);
-  --color-brand: var(--brand);
-  --color-on-brand: var(--on-brand);
-  --color-accent: var(--accent);
-  --color-on-accent: var(--on-accent);
-  --color-brand-text: var(--brand-text);
-  --color-accent-text: var(--accent-text);
-  --font-display: var(--site-display);
-  --font-sans: var(--site-body);
+  /* Former brand tokens, all mapped to black/white until the design pass. */
+  --color-brand: var(--ink);
+  --color-on-brand: var(--paper);
+  --color-accent: var(--ink);
+  --color-on-accent: var(--paper);
+  --color-brand-text: var(--ink);
+  --color-accent-text: var(--ink);
+  --font-display: system-ui, sans-serif;
+  --font-sans: system-ui, sans-serif;
 }
 
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--site-body);
-  -webkit-font-smoothing: antialiased;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-/* Condensed display type used for dates, numbers and headings. */
+/* Headings, dates and numbers. */
 .display {
-  font-family: var(--site-display);
-  text-transform: uppercase;
-  line-height: 0.9;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  line-height: 1.1;
   font-variant-numeric: tabular-nums;
 }
 
-/* Diagonal hazard stripe used on the pit-board template. */
-.stripe {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    var(--brand) 0 12px,
-    transparent 12px 24px
-  );
-}
-
-/* Checkered flag strip. */
-.checker {
-  background-color: var(--ink);
-  background-image:
-    linear-gradient(45deg, var(--paper) 25%, transparent 25%, transparent 75%, var(--paper) 75%),
-    linear-gradient(45deg, var(--paper) 25%, transparent 25%, transparent 75%, var(--paper) 75%);
-  background-size: 12px 12px;
-  background-position: 0 0, 6px 6px;
-}
-
 :focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--ink);
   outline-offset: 2px;
 }
