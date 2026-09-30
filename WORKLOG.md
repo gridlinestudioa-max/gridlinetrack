@@ -10,8 +10,16 @@ Newest first. Start each session with a one-line goal; end with done / broke / n
 - Owner created an admin account and a track in ~4 minutes on https://gridlinetrack.vercel.app.
 - Event card form reviewed; looks good.
 
-**Open**
-- Gate not yet complete: no event card created/published yet.
+- Event card created and published; public event page checked by the owner. **Phase 1 gate passed**
+  (create track + publish event page in under 10 minutes).
+
+**Phase 1 checklist status**
+- [x] App scaffolded; README
+- [x] SQL migrations + RLS keyed by track_id
+- [~] Tenant from hostname: local yes; on Vercel via /sites/<slug> until a domain exists (see DECISIONS.md)
+- [x] Admin: create track, logo, brand kit, event cards
+- [x] One public template (plain black-and-white for now, see DECISIONS.md)
+- [ ] Tenant isolation verified by an automated pass/fail test (DB checks exist but are read by eye)
 
 ## 2026-09-30 (later)
 
