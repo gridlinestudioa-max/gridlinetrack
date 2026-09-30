@@ -2,6 +2,24 @@
 
 Newest first. Start each session with a one-line goal; end with done / broke / next.
 
+## 2026-09-30 (isolation test)
+
+**Goal:** Close the last Phase 1 box: automated tenant isolation test.
+
+**Done**
+- `supabase/tests/tenant_isolation.sql`: ~100 pass/fail checks. Two owners, two fully populated tracks;
+  each tries every read/write/cross-link path into the other (unpublished and published), plus a
+  signed-in stranger and an anonymous visitor. Rejections only count for permission / cross-track FK /
+  not-found errors, so a typo in the test can't pass.
+- Verified the test catches breakage: making classes world-readable, or events world-editable, turns it red.
+- GitHub Actions workflow `.github/workflows/db-tests.yml` runs it on every push/PR.
+- Removed the old read-by-eye `rls_smoke.sql`.
+
+**Phase 1:** all boxes checked except real subdomains on Vercel (needs a domain; see DECISIONS.md).
+
+**Next**
+- Owner picks the next step: Phase 2 (race night engine) or logo colour extraction.
+
 ## 2026-09-30 (owner test)
 
 **Goal:** Phase 1 gate on the live site.
@@ -19,7 +37,7 @@ Newest first. Start each session with a one-line goal; end with done / broke / n
 - [~] Tenant from hostname: local yes; on Vercel via /sites/<slug> until a domain exists (see DECISIONS.md)
 - [x] Admin: create track, logo, brand kit, event cards
 - [x] One public template (plain black-and-white for now, see DECISIONS.md)
-- [ ] Tenant isolation verified by an automated pass/fail test (DB checks exist but are read by eye)
+- [x] Tenant isolation verified by an automated pass/fail test (see isolation test entry above)
 
 ## 2026-09-30 (later)
 

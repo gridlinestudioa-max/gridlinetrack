@@ -123,17 +123,23 @@ Key rules:
 - **`save_event_card()`** writes an event plus its classes and specials atomically, as `SECURITY INVOKER`, so RLS still applies.
 - **The public can join a published track's `subscribers` list** (insert only) but can't read it.
 
-### Testing the database rules without Supabase
+### Tenant isolation test
+
+`supabase/tests/tenant_isolation.sql` proves one track's data never reaches
+another. It creates two tracks with separate owners, fills both with every kind
+of data, then tries each read and write path across tracks, as the other owner,
+as a signed-in stranger and as an anonymous visitor. There are about 100
+checks; any failure stops the run with `FAIL …` and a non-zero exit.
+
+It runs automatically on every push (GitHub → **Actions** → *Tenant isolation*).
+To run it by hand against any disposable Postgres 15+:
 
 ```bash
-DATABASE_URL=postgres://postgres@localhost:5432/postgres scripts/test-db.sh
+DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres scripts/test-db.sh
 ```
 
-This creates a throwaway `gridline_rls_test` database and stubs the Supabase
-`auth`/`storage` schemas (`supabase/tests/stub_supabase.sql`). It applies the
-migrations and seed, then runs `supabase/tests/rls_smoke.sql`. Each statement
-commented "expect …" should fail or affect 0 rows; there are 14 expected
-errors in total.
+Supabase's `auth` and `storage` schemas are stubbed by
+`supabase/tests/stub_supabase.sql`; never run that file against a real project.
 
 ---
 

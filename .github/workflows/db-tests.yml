@@ -1,0 +1,31 @@
+# Runs the tenant isolation test (supabase/tests/tenant_isolation.sql) against a
+# throwaway Postgres on every push and pull request. A red ✗ means one track's
+# data could reach another track: do not deploy until it's green.
+name: Tenant isolation
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  db-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run tenant isolation test
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
+        run: scripts/test-db.sh
