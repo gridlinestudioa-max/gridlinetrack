@@ -2,6 +2,17 @@
 
 Newest first. Start each session with a one-line goal; end with done / broke / next.
 
+## 2026-09-30 (owner test)
+
+**Goal:** Phase 1 gate on the live site.
+
+**Done**
+- Owner created an admin account and a track in ~4 minutes on https://gridlinetrack.vercel.app.
+- Event card form reviewed; looks good.
+
+**Open**
+- Gate not yet complete: no event card created/published yet.
+
 ## 2026-09-30 (later)
 
 **Goal:** Add registration and results links to the event card (SPEC section 6, events).
