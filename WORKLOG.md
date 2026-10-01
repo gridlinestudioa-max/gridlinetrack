@@ -2,6 +2,30 @@
 
 Newest first. Start each session with a one-line goal; end with done / broke / next.
 
+## 2026-10-01
+
+**Goal:** Phase 2, item 1: flyer generator (print-ready PDF + social-size PNG from the event card).
+
+**Done**
+- `src/lib/flyer/`: flyer layout (next/og, no new dependency) rendered from the saved event card:
+  track + logo, status banner (postponed / rained out / cancelled + new date), date block, title,
+  times, classes (two columns past 4, sized for 12+), specials, admission, address, site address.
+  Footer is always drawn; only the middle trims on extreme cards.
+- Outputs: 1080x1350 PNG (Instagram/Facebook feed) and US Letter PDF at 300 dpi (`src/lib/pdf.ts`,
+  zero-dependency PNG->PDF). Verified PDF opens in pdf.js and the embedded image is correct.
+- Route `/admin/t/[trackId]/events/[eventId]/flyer?format=png|pdf[&download=1]`, members only.
+- Flyer panel (preview + two download buttons) at the top of each event card's edit page.
+- Fixed: "Live site" link / Settings address used the subdomain form, which doesn't work on Vercel
+  yet; now `/sites/<slug>` when ALLOW_PATH_TENANTS=true.
+- Bundled Inter Regular/ExtraBold (OFL) in `assets/fonts` for rendering.
+
+**Known limits**
+- WebP logos are skipped on flyers (renderer can't draw WebP); PNG/JPEG work.
+
+**Next**
+- Owner: open an event card on the live site, download both files, check on phone + print one.
+- Then Phase 2 item 2: social graphics (announcement, cancellation, thank-you).
+
 ## 2026-09-30 (isolation test)
 
 **Goal:** Close the last Phase 1 box: automated tenant isolation test.

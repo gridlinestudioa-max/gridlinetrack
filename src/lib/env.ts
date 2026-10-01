@@ -30,8 +30,14 @@ export function storagePublicUrl(path: string, bucket = "track-media") {
     .join("/")}`;
 }
 
-/** Absolute URL of a tenant's public site. */
+/**
+ * Absolute URL of a tenant's public site: <slug>.ROOT_DOMAIN, or
+ * ROOT_DOMAIN/sites/<slug> when deployed without wildcard subdomains
+ * (ALLOW_PATH_TENANTS=true, e.g. on a *.vercel.app address). Server-only.
+ */
 export function tenantSiteUrl(slug: string) {
-  const protocol = ROOT_DOMAIN.startsWith("localhost") || ROOT_DOMAIN.includes("lvh.me") ? "http" : "https";
+  const local = ROOT_DOMAIN.startsWith("localhost") || ROOT_DOMAIN.includes("lvh.me");
+  const protocol = local ? "http" : "https";
+  if (process.env.ALLOW_PATH_TENANTS === "true") return `${protocol}://${ROOT_DOMAIN}/sites/${slug}`;
   return `${protocol}://${slug}.${ROOT_DOMAIN}`;
 }

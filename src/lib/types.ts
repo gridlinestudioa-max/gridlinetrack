@@ -80,6 +80,7 @@ export interface RaceEvent {
   livestream_url: string | null;
   registration_url: string | null;
   results_url: string | null;
+  updated_at: string;
 }
 
 export interface EventClassRow {
