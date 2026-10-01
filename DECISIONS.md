@@ -16,9 +16,13 @@ Chosen: C
 Why: No new dependencies; one layout for social and print; 300 dpi prints sharply. Text isn't vector.
 Revisit when: a print shop needs bleed/CMYK/vector text, or file sizes become a problem.
 
-## 2026-10-01: Flyers start plain black and white, like the site
-Chosen: Black-and-white layout with the track logo; brand colours and fonts arrive with the design pass.
-Why: Consistent with the backend-first decision; B&W also prints cheaply on any printer and needs no bleed.
+## 2026-10-01: Flyers and graphics use placeholder templates until the owner supplies real ones
+Context: The owner will provide the real flyer/graphic templates once the pipeline is set up.
+Chosen: Plain black-and-white placeholder layouts with the track logo. They exist to prove the
+pipeline (event card -> PNG/PDF), not as final design. Brand colours and fonts arrive with the real templates.
+Why: Backend first; B&W also prints cheaply on any printer and needs no bleed.
+Revisit when: the owner hands over templates. Each output's layout lives in one file
+(e.g. src/lib/flyer/Flyer.tsx), so a real template replaces that file without touching data or routes.
 
 ## 2026-09-30: Build backend first on a plain black-and-white site
 Context: Owner wants the data and admin working before investing in visual design.
