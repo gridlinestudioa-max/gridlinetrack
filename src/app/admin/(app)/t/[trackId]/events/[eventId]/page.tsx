@@ -8,6 +8,7 @@ import type { EventCard, RaceClass } from "@/lib/types";
 import { deleteEvent } from "../../actions";
 import { EventCardForm } from "../EventCardForm";
 import { FlyerPanel } from "./FlyerPanel";
+import { GraphicsPanel } from "./GraphicsPanel";
 
 export const metadata: Metadata = { title: "Edit event — Gridline Track" };
 
@@ -43,6 +44,9 @@ export default async function EditEventPage({ params, searchParams }: PageProps<
       ) : null}
       <div className="mb-6">
         <FlyerPanel trackId={track.id} event={event} />
+      </div>
+      <div className="mb-6">
+        <GraphicsPanel trackId={track.id} event={event} />
       </div>
       <EventCardForm trackId={track.id} event={event} classes={classes ?? []} trackBase={`/admin/t/${track.id}`} />
       <form action={deleteEvent.bind(null, track.id, event.id)} className="mt-10 border-t-2 border-neutral-300 pt-6">

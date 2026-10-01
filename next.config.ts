@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   // Flyer fonts are read from disk at request time; make sure they ship with the server.
   outputFileTracingIncludes: {
     "/admin/t/[trackId]/events/[eventId]/flyer": ["./assets/fonts/**/*"],
+    "/admin/t/[trackId]/events/[eventId]/graphic": ["./assets/fonts/**/*"],
   },
   experimental: {
     serverActions: {

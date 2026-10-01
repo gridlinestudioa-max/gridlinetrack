@@ -2,6 +2,25 @@
 
 Newest first. Start each session with a one-line goal; end with done / broke / next.
 
+## 2026-10-01 (social graphics)
+
+**Goal:** Phase 2, item 2: social graphics (announcement, cancellation, thank-you).
+
+**Done**
+- `src/lib/graphics/`: three placeholder templates generated from the event card, each in square
+  (1080x1080) and story (1080x1920, content kept out of the platform UI zones) sizes.
+  - Announcement: date block, title, gates/racing times, feature class + purse, other classes, specials.
+  - Rain-out / cancellation: status, title, struck-through original date, new date (rain date) if set.
+  - Thanks for coming: title, date, pointer to results on the site.
+- Route `/admin/t/[trackId]/events/[eventId]/graphic?kind=…&size=…[&download=1]`, members only.
+  Cancellation graphic only for events set to Postponed / Rained out / Cancelled (409 otherwise).
+- "Social graphics" panel on each event card: preview + Square/Story downloads per kind.
+- Shared `renderPng()` so flyer and graphics use one rendering path. Long-name and 12-class renders checked.
+
+**Next**
+- Owner: check graphics on the live site (phone).
+- Phase 2 item 3: email blast with preview, send, unsubscribe (needs Resend; listed in SPEC).
+
 ## 2026-10-01
 
 **Goal:** Phase 2, item 1: flyer generator (print-ready PDF + social-size PNG from the event card).

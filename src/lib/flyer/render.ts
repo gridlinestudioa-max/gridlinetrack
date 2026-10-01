@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { createElement } from "react";
+import { createElement, type ReactElement } from "react";
 import { pngToPdf } from "@/lib/pdf";
 import type { FlyerData } from "./data";
 import { Flyer } from "./Flyer";
@@ -26,15 +26,15 @@ function loadFonts() {
   return fonts;
 }
 
+/** Render a next/og (satori) element to PNG bytes with the bundled fonts. */
+export async function renderPng(element: ReactElement, width: number, height: number) {
+  const image = new ImageResponse(element, { width, height, fonts: await loadFonts() });
+  return new Uint8Array(await image.arrayBuffer());
+}
+
 export async function renderFlyerPng(data: FlyerData, format: keyof typeof FLYER_FORMATS) {
   const { width, height } = FLYER_FORMATS[format];
-  const u = width / 1080;
-  const image = new ImageResponse(createElement(Flyer, { data, u }), {
-    width,
-    height,
-    fonts: await loadFonts(),
-  });
-  return new Uint8Array(await image.arrayBuffer());
+  return renderPng(createElement(Flyer, { data, u: width / 1080 }), width, height);
 }
 
 /** Print-ready US Letter PDF (8.5 × 11 in = 612 × 792 pt) from the 300 dpi render. */
